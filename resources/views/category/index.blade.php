@@ -3,9 +3,30 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-md-8">
+                <div class="border p-3 shadow rounded mb-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item">
+                                <a href="{{ route('home') }}">
+                                    <i class="bi bi-house-fill"></i>
+                                    Home
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active">
+                                <i class="bi bi-list-ul"></i>
+                                Category List
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8">
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
+                            <td>#</td>
                             <td>Name</td>
                             <td>Action</td>
                             <td>Create At</td>
@@ -14,6 +35,7 @@
                     <tbody>
                         @foreach ($categories as $category)
                             <tr class="align-middle">
+                                <td>{{ $category->id }}</td>
                                 <td>{{ $category->name }}</td>
                                 <td>
                                     <a href="{{ route('category.edit', $category->id) }}" class="btn btn-primary">

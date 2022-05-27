@@ -3,10 +3,36 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-md-6">
+                <div class="border p-3 shadow rounded mb-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item">
+                                <a href="{{ route('home') }}">
+                                    <i class="bi bi-house-fill"></i>
+                                    Home
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="{{ route('item.index') }}">
+                                    <i class="bi bi-list-ul"></i>
+                                    Item List
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active">
+                                <i class="bi bi-pen"></i>
+                                Edit
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6">
                 <div class="card">
                     <h5 class="card-header">Edit item</h5>
                     <div class="card-body">
-                        <img src="{{ asset('storage/item-photo/' . $item->photo) }}" class="w-100" alt="">
+                        <x-photo-upload photo="{{ asset('storage/item-photo/' . $item->photo) }}" />
                         <form action="{{ route('item.update', $item->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('put')
@@ -39,13 +65,7 @@
                                     <small class="small text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
-                            <div class="mb-3">
-                                <label for="" class="form-label">Photo</label>
-                                <input type="file" class="form-control" name="photo">
-                                @error('photo')
-                                    <small class="small text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
+                            <input type="file" class="form-control photoInput d-none" name="photo">
                             <button class="btn btn-primary">Create Now</button>
                         </form>
                     </div>
@@ -55,6 +75,7 @@
     </div>
 @endsection
 @section('js')
+    <x-photo-upload-script />
     @if (session('status'))
         <x-swal />
     @endif
