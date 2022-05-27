@@ -66,7 +66,7 @@
                                 @enderror
                             </div>
                             <input type="file" class="form-control photoInput d-none" name="photo">
-                            <button class="btn btn-primary">Create Now</button>
+                            <button class="btn btn-primary">Update Now</button>
                         </form>
                     </div>
                 </div>
